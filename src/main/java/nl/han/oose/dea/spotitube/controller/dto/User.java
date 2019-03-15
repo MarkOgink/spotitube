@@ -5,8 +5,8 @@ public class User {
     public String password;
 
     public User(){
-        this.username = "meron";
-        this.password = "MySuperSecretPassword12341";
+        this.username = "hallo";
+        this.password = "test";
     }
 
     public String getUsername() {
