@@ -1,5 +1,2 @@
 # spotitube
 Programmeeropdracht DEA
-
-
-GHBHBGH
