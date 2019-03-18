@@ -6,12 +6,14 @@ public class Playlist {
     private int id;
     private String name;
     private boolean owner;
-    private ArrayList<String> tracks;
+    private Tracks tracks;
 
-    public Playlist(){
-        id = 1;
-        name = "Death Metal";
-        owner = true;
+    public Playlist(int id, String name, boolean owner){
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.tracks = new Tracks(id);
+        //tracks.add("nummero2");
     }
 
 
@@ -39,11 +41,11 @@ public class Playlist {
         this.owner = owner;
     }
 
-    public ArrayList<String> getTracks() {
+    public Tracks getTracks() {
         return tracks;
     }
 
-    public void setTracks(ArrayList<String> tracks) {
+    public void setTracks(Tracks tracks) {
         this.tracks = tracks;
     }
 }
