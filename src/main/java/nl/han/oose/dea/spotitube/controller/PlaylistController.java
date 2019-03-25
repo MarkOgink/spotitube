@@ -3,6 +3,8 @@ package nl.han.oose.dea.spotitube.controller;
 import nl.han.oose.dea.spotitube.controller.dto.LoginResponse;
 import nl.han.oose.dea.spotitube.controller.dto.Playlist;
 import nl.han.oose.dea.spotitube.controller.dto.Playlists;
+import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+import nl.han.oose.dea.spotitube.datasources.dao.PlaylistDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,8 +19,9 @@ public class PlaylistController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token){
         if(token.equals("1234-1234-1234")){
-            playlists = new Playlists();
-            return Response.ok(playlists).build();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            PlaylistDao playlistDao = new PlaylistDao(databaseConnection);
+            return Response.ok(playlistDao.getPlaylists()).build();
         }
         else return Response.status(403).build();
     }
@@ -31,7 +34,6 @@ public class PlaylistController {
         playlists = new Playlists();
         for (int i = 0; i < playlists.getPlaylists().size(); i++) {
             if(playlists.getPlaylists().get(i).getId() == forPlaylist){
-                System.out.println(playlists.getPlaylists().get(i).getTracks());
                 return Response.ok(playlists.getPlaylists().get(i).getTracks()).build();
             }
         }

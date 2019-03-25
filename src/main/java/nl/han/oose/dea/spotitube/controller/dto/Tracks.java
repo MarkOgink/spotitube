@@ -1,14 +1,16 @@
 package nl.han.oose.dea.spotitube.controller.dto;
 
+import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+
 import java.util.ArrayList;
 
 public class Tracks {
     private ArrayList<Track> tracks = new ArrayList<Track>();
     private int playlistId;
 
-    public Tracks(int playlistId){
+    public Tracks(int playlistId, ArrayList<Track> tracks){
         this.playlistId = playlistId;
-        this.tracks.add(new Track(3, "Ocean and a rock", "Lisa Hannigan", 337, "Sea sew", 0, null, null, false));
+        this.tracks = tracks;
     }
 
     public int getPlaylistId() {

@@ -18,6 +18,7 @@ public class Track {
         this.title = title;
         this.performer = performer;
         this.duration = duration;
+        this.album = album;
         this.playcount = playcount;
         this.publicationDate = publicationDate;
         this.description = description;

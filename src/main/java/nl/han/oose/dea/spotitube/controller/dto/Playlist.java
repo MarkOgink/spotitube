@@ -8,12 +8,11 @@ public class Playlist {
     private boolean owner;
     private Tracks tracks;
 
-    public Playlist(int id, String name, boolean owner){
+    public Playlist(int id, String name, boolean owner, Tracks tracks){
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.tracks = new Tracks(id);
-        //tracks.add("nummero2");
+        this.tracks = tracks;
     }
 
 

@@ -7,11 +7,11 @@ public class Playlists {
     private int length;
 
     public Playlists(){
-        Playlist playlist1 = new Playlist(1, "Death Metal", true);
-        Playlist playlist2 = new Playlist(2, "Pop", false);
-        playlists.add(playlist1);
-        playlists.add(playlist2);
-        length = 500;
+        //Playlist playlist1 = new Playlist(1, "Death Metal", true);
+        //Playlist playlist2 = new Playlist(2, "Pop", false);
+        //playlists.add(playlist1);
+        //playlists.add(playlist2);
+        //length = 500;
     }
 
 //    public void removePlaylistFromPlaylists(Playlists playlists, int id){
