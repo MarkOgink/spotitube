@@ -1,32 +1,27 @@
 package nl.han.oose.dea.spotitube.datasources.dao;
 
-import nl.han.oose.dea.spotitube.controller.dto.Playlist;
-import nl.han.oose.dea.spotitube.controller.dto.Playlists;
-import nl.han.oose.dea.spotitube.controller.dto.Track;
-import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+import nl.han.oose.dea.spotitube.domain.Playlist;
+import nl.han.oose.dea.spotitube.domain.Playlists;
+import nl.han.oose.dea.spotitube.datasources.util.DatabaseProperties;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.*;
 
 public class PlaylistDao {
-    private DatabaseConnection connection;
+    private DatabaseProperties databaseProperties;
     private Playlists playlists;
 
-    public PlaylistDao(DatabaseConnection connection){
-        this.connection = connection;
+    public PlaylistDao(DatabaseProperties databaseProperties){
+        this.databaseProperties = databaseProperties;
         this.playlists = setPlaylists();
     }
 
 
     public Playlists setPlaylists(){
-        ResultSet rsEmps = null;
+        ResultSet rsEmps;
         Playlists playlists = new Playlists();
-        try
+        try (Connection connection = DriverManager.getConnection(databaseProperties.connectionString()))
         {
-            PreparedStatement st = connection.getConnection().prepareStatement("SELECT * FROM playlist");
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM playlist");
             rsEmps = st.executeQuery();
 
             while (rsEmps.next())

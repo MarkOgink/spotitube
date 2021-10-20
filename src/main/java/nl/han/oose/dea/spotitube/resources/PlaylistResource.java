@@ -1,9 +1,7 @@
-package nl.han.oose.dea.spotitube.controller;
+package nl.han.oose.dea.spotitube.resources;
 
-import nl.han.oose.dea.spotitube.controller.dto.LoginResponse;
-import nl.han.oose.dea.spotitube.controller.dto.Playlist;
-import nl.han.oose.dea.spotitube.controller.dto.Playlists;
-import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+import nl.han.oose.dea.spotitube.domain.Playlists;
+import nl.han.oose.dea.spotitube.datasources.util.DatabaseProperties;
 import nl.han.oose.dea.spotitube.datasources.dao.PlaylistDao;
 
 import javax.ws.rs.*;
@@ -11,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/playlists")
-public class PlaylistController {
+public class PlaylistResource {
     Playlists playlists;
 
     @GET
@@ -19,7 +17,7 @@ public class PlaylistController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token){
         if(token.equals("1234-1234-1234")){
-            DatabaseConnection databaseConnection = new DatabaseConnection();
+            DatabaseProperties databaseConnection = new DatabaseProperties();
             PlaylistDao playlistDao = new PlaylistDao(databaseConnection);
             return Response.ok(playlistDao.getPlaylists()).build();
         }

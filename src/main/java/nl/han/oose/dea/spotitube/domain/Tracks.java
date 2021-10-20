@@ -1,6 +1,4 @@
-package nl.han.oose.dea.spotitube.controller.dto;
-
-import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+package nl.han.oose.dea.spotitube.domain;
 
 import java.util.ArrayList;
 

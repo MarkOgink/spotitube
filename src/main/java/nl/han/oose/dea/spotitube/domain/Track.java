@@ -1,4 +1,4 @@
-package nl.han.oose.dea.spotitube.controller.dto;
+package nl.han.oose.dea.spotitube.domain;
 
 import java.util.Date;
 

@@ -1,29 +1,29 @@
 package nl.han.oose.dea.spotitube.datasources.dao;
 
 
-import nl.han.oose.dea.spotitube.controller.dto.Track;
-import nl.han.oose.dea.spotitube.controller.dto.Tracks;
-import nl.han.oose.dea.spotitube.datasources.DatabaseConnection;
+import nl.han.oose.dea.spotitube.domain.Track;
+import nl.han.oose.dea.spotitube.domain.Tracks;
+import nl.han.oose.dea.spotitube.datasources.util.DatabaseProperties;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class TracksDao {
-    private DatabaseConnection connection;
+    private DatabaseProperties databaseProperties;
     private Tracks tracks;
 
-    public TracksDao(DatabaseConnection connection){
-        this.connection = connection;
+    public TracksDao(DatabaseProperties databaseProperties){
+        this.databaseProperties = databaseProperties;
         this.tracks = setTracks();
     }
 
 
     public Tracks setTracks(){
-        ResultSet rsEmps = null;
+        ResultSet rsEmps;
         ArrayList<Track> tracklist = new ArrayList<Track>();
-        try
+        try (Connection connection = DriverManager.getConnection(databaseProperties.connectionString()))
         {
-            PreparedStatement st = connection.getConnection().prepareStatement("SELECT * FROM track");
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM track");
             rsEmps = st.executeQuery();
             while (rsEmps.next())
             {

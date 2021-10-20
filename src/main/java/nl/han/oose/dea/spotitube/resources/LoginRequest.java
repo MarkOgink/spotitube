@@ -1,16 +1,16 @@
-package nl.han.oose.dea.spotitube.controller.dto;
+package nl.han.oose.dea.spotitube.resources;
 
 public class LoginRequest {
     public String user;
     public String password;
 
 
-    public String getUsername() {
+    public String getUser() {
         return user;
     }
 
-    public void setUsername(String username) {
-        this.user = username;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {

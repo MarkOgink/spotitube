@@ -1,6 +1,4 @@
-package nl.han.oose.dea.spotitube.controller.dto;
-
-import java.util.ArrayList;
+package nl.han.oose.dea.spotitube.domain;
 
 public class Playlist {
     private int id;
