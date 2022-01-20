@@ -12,12 +12,12 @@ import javax.ws.rs.core.Response;
 public class LoginService implements ILoginService{
     private LoginResponse loginResponse;
     @Override
-    public Response login(LoginRequest user) {
+    public LoginResponse login(LoginRequest user) {
         LoginDao loginDao = new LoginDao(new DatabaseProperties());
         loginResponse = loginDao.authenticate(user);
         if(loginResponse != null){
-            return Response.ok().entity(loginResponse).build();
+            return loginResponse;
         }
-        return Response.status(403).build();
+        else return null;
     }
 }

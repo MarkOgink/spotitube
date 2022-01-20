@@ -23,14 +23,13 @@ public class LoginDao {
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error communicating with driver " + databaseProperties.driverString(), e);
         }
-        System.out.println(databaseProperties.connectionString());
         try (Connection connection = DriverManager.getConnection(databaseProperties.connectionString())){
-            PreparedStatement statement = connection.prepareStatement("SELECT token, name FROM user WHERE username =? AND password = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT name, token FROM user WHERE username =? AND password = ?");
             statement.setString(1, loginRequest.user);
             statement.setString(2, loginRequest.password);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                loginResponse = new LoginResponse(resultSet.getString("token"), resultSet.getString("name"));
+                loginResponse = new LoginResponse(resultSet.getString("name"), resultSet.getString("token"));
             }
             statement.close();
         } catch (SQLException e) {
