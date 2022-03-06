@@ -1,22 +1,26 @@
 package nl.han.oose.dea.spotitube.services;
 
-import nl.han.oose.dea.spotitube.datasources.dao.LoginDao;
-import nl.han.oose.dea.spotitube.datasources.util.DatabaseProperties;
+import org.apache.commons.codec.*;
+import nl.han.oose.dea.spotitube.datasources.mapper.UserMapper;
+import nl.han.oose.dea.spotitube.domain.User;
 import nl.han.oose.dea.spotitube.resources.LoginRequest;
-import nl.han.oose.dea.spotitube.resources.LoginResponse;
 
 import javax.enterprise.inject.Default;
-import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 @Default
-public class LoginService implements ILoginService{
-    private LoginResponse loginResponse;
-    @Override
-    public LoginResponse login(LoginRequest user) {
-        LoginDao loginDao = new LoginDao(new DatabaseProperties());
-        loginResponse = loginDao.authenticate(user);
-        if(loginResponse != null){
-            return loginResponse;
+public class LoginService {
+
+
+    public User login(LoginRequest request) {
+        //DigestUtils.sha256(request.password);
+        UserMapper userMapper = new UserMapper();
+        User response = userMapper.find(request.user);
+        if ((request.password).equals(response.password)){
+            if(response.token == null){
+                response.token = UUID.randomUUID().toString();
+            }
+            return response;
         }
         else return null;
     }

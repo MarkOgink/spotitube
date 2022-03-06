@@ -1,5 +1,6 @@
 package nl.han.oose.dea.spotitube.resources;
 
+import nl.han.oose.dea.spotitube.domain.User;
 import nl.han.oose.dea.spotitube.services.ILoginService;
 import nl.han.oose.dea.spotitube.services.LoginService;
 

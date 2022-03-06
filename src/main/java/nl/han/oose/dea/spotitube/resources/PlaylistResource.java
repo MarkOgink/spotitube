@@ -2,7 +2,7 @@ package nl.han.oose.dea.spotitube.resources;
 
 import nl.han.oose.dea.spotitube.domain.Playlists;
 import nl.han.oose.dea.spotitube.datasources.util.DatabaseProperties;
-import nl.han.oose.dea.spotitube.datasources.dao.PlaylistDao;
+import nl.han.oose.dea.spotitube.datasources.mapper.PlaylistDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
