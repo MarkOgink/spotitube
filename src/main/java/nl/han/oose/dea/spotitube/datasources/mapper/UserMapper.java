@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserMapper extends AbstractMapper {
-    public static final String COLUMNS = " username, password, name, token";
+    public static final String COLUMNS = " username, name, password";
 
     protected String findStatement() {
         return "SELECT " + COLUMNS +
@@ -18,9 +18,8 @@ public class UserMapper extends AbstractMapper {
 
     protected Object doLoad(String id, ResultSet rs) throws SQLException {
         String username = rs.getString(1);
-        String password = rs.getString(2);
-        String name = rs.getString(3);
-        String token = rs.getString(4);
-        return new User(username, password, name, token);
+        String name = rs.getString(2);
+        String password = rs.getString(3);
+        return new User(username, name, password, null);
     }
 }

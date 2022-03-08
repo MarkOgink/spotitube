@@ -1,10 +1,6 @@
 package nl.han.oose.dea.spotitube.resources;
 
-import nl.han.oose.dea.spotitube.domain.User;
-import nl.han.oose.dea.spotitube.services.ILoginService;
 import nl.han.oose.dea.spotitube.services.LoginService;
-
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

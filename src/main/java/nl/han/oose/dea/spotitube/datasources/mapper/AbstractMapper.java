@@ -33,7 +33,7 @@ public abstract class AbstractMapper {
     }
 
     protected Object load(ResultSet rs) throws SQLException {
-        String token = rs.getString(4);
+        String token = rs.getString(1);
         if (loadedMap.containsKey(token)) return loadedMap.get(token);
         Object result = doLoad(token, rs);
         loadedMap.put(token, result);
