@@ -1,6 +1,6 @@
 # spotitube
 Programmeeropdracht DEA  
-TODO//  
+TODO  
 -Unit tests  
 -Length off all playlists
 -Document
