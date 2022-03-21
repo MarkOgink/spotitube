@@ -1,6 +1,4 @@
 package nl.han.oose.dea.spotitube.resources;
-
-import nl.han.oose.dea.spotitube.domain.User;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;

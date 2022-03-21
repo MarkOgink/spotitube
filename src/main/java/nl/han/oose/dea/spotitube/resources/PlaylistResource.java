@@ -1,16 +1,20 @@
 package nl.han.oose.dea.spotitube.resources;
 import nl.han.oose.dea.spotitube.domain.PlaylistRequest;
 import nl.han.oose.dea.spotitube.services.PlaylistService;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/playlists")
 public class PlaylistResource {
-    PlaylistService playlistService = new PlaylistService();
+    private PlaylistService playlistService;
+    @Inject
+    public void setPlaylistService(PlaylistService playlistService){
+        this.playlistService = playlistService;
+    }
 
     @GET
-    @Path("/playlists")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token){
@@ -21,7 +25,6 @@ public class PlaylistResource {
     }
 
     @POST
-    @Path("/playlists")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addPlaylist(@QueryParam("token") String token, PlaylistRequest playlist){
@@ -32,7 +35,7 @@ public class PlaylistResource {
     }
 
     @DELETE
-    @Path("/playlists/{id}")
+    @Path("/{id}")
     public Response removePlaylist(@QueryParam("token") String token, @PathParam("id") int id){
         if(Token.authenticate(token)) {
             return Response.ok().entity(playlistService.removePlaylist(id)).build();
@@ -41,7 +44,7 @@ public class PlaylistResource {
     }
 
     @PUT
-    @Path("/playlists/{id}")
+    @Path("/{id}")
     public Response editPlaylist(@QueryParam("token") String token, @PathParam("id") int id, PlaylistRequest playlist) {
         if(Token.authenticate(token)){
             return Response.ok().entity(playlistService.editPlaylist(id, playlist.name)).build();

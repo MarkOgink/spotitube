@@ -32,16 +32,14 @@ public class PlaylistService {
     }
 
     public Playlists removePlaylist(int id) {
-        playlistMapper.deletePlaylist(id);
         playlists.getPlaylists().removeIf(playlistDTO -> playlistDTO.id==id);
+        playlistMapper.deletePlaylist(id);
         return playlists;
     }
 
     public Playlists editPlaylist(int id, String name) {
-        if(playlists.getPlaylists().stream().noneMatch(playlistResponse -> playlistResponse.name.equals(name))){
-            playlistMapper.update(id, name);
-            playlists.getPlaylists().get(id).name = name;
-        }
+        playlists.getPlaylists().stream().filter(playlistResponse -> playlistResponse.id==id).findFirst().orElseThrow().name = name;
+        playlistMapper.update(id, name);
         return playlists;
     }
 }

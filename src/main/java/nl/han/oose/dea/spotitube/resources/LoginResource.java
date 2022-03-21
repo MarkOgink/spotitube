@@ -4,16 +4,21 @@ import nl.han.oose.dea.spotitube.domain.LoginRequest;
 import nl.han.oose.dea.spotitube.domain.LoginResponse;
 import nl.han.oose.dea.spotitube.domain.User;
 import nl.han.oose.dea.spotitube.services.LoginService;
+
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/login")
 public class LoginResource {
-    private LoginService loginService = new LoginService();
+    private LoginService loginService;
+    @Inject
+    public void setLoginService(LoginService loginService){
+        this.loginService = loginService;
+    }
 
     @POST
-    @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(LoginRequest user){
