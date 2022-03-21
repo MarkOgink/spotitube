@@ -1,4 +1,4 @@
-package nl.han.oose.dea.spotitube.resources;
+package nl.han.oose.dea.spotitube.domain;
 
 public class LoginRequest {
     public String user;

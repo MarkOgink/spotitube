@@ -1,10 +1,9 @@
 package nl.han.oose.dea.spotitube.datasources.mapper;
 import nl.han.oose.dea.spotitube.domain.User;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
-public class UserMapper extends AbstractMapper {
-    public static final String COLUMNS = " username, name, password";
+public class UserMapper extends AbstractMapper{
+    public static final String COLUMNS = " username, user, password";
 
     protected String findStatement() {
         return "SELECT " + COLUMNS +
@@ -13,13 +12,10 @@ public class UserMapper extends AbstractMapper {
     }
 
     public User find(String username) {
-        return (User) abstractFind(username);
+        return (User) abstractFindOne(username);
     }
 
-    protected Object doLoad(String id, ResultSet rs) throws SQLException {
-        String username = rs.getString(1);
-        String name = rs.getString(2);
-        String password = rs.getString(3);
-        return new User(username, name, password, null);
+    protected User doLoad(ResultSet rs) throws SQLException {
+        return new User(rs.getString(1), rs.getString(2), rs.getString(3));
     }
 }

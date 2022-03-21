@@ -2,21 +2,18 @@ package nl.han.oose.dea.spotitube.services;
 
 import nl.han.oose.dea.spotitube.datasources.mapper.UserMapper;
 import nl.han.oose.dea.spotitube.domain.User;
-import nl.han.oose.dea.spotitube.resources.LoginRequest;
-import nl.han.oose.dea.spotitube.resources.LoginResponse;
+import nl.han.oose.dea.spotitube.domain.LoginRequest;
 import org.apache.commons.codec.digest.DigestUtils;
 import javax.enterprise.inject.Default;
-import java.util.UUID;
 
 @Default
 public class LoginService {
+    UserMapper userMapper = new UserMapper();
 
-    public LoginResponse login(LoginRequest request) {
-        UserMapper userMapper = new UserMapper();
+    public User login(LoginRequest request) {
         User response = userMapper.find(request.user);
         if (DigestUtils.sha256Hex(request.password).equals(response.password)){
-            response.token = UUID.randomUUID().toString();
-            return new LoginResponse(response.token, response.name);
+            return response;
         }
         else return null;
     }
