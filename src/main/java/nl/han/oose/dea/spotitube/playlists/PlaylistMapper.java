@@ -13,7 +13,7 @@ public class PlaylistMapper extends AbstractMapper {
     }
 
     public void deletePlaylist(int id){
-        abstractDelete();
+        executeStatement();
     }
 
     public static final String COLUMNS = "id, name, username";
@@ -28,13 +28,16 @@ public class PlaylistMapper extends AbstractMapper {
         return "DELETE FROM playlist WHERE id = ?";
     }
 
+    protected String insertStatement(){
+        return "INSERT INTO playlist VALUES(?,?,?)";
+    }
+
     protected Playlist doLoad(ResultSet rs) throws SQLException {
         return new Playlist(rs.getInt(1), rs.getString(2), rs.getString(3), null);
     }
 
     public void addPlaylist(int id, String name, String username) {
-        abstractInsert("INSERT INTO playlist VALUES(" + id + ", '" + name + "', '" + username + "');");
-        /*PreparedStatement insertStatement;
+        PreparedStatement insertStatement;
         try (Connection connection = DriverManager.getConnection(databaseProperties.connectionString())){
             insertStatement = connection.prepareStatement(insertStatement());
             insertStatement.setInt(1, id);
@@ -43,7 +46,7 @@ public class PlaylistMapper extends AbstractMapper {
             insertStatement.executeUpdate();
         } catch (SQLException e){
             logger.log(Level.SEVERE, "Error communicating with database " + databaseProperties.connectionString(), e);
-        }*/
+        }
     }
 
     public void update(int id, String name) {

@@ -9,7 +9,4 @@ public class TracksInPlaylist {
         this.trackid = trackid;
     }
 
-    public int getTrackid() {
-        return trackid;
-    }
 }

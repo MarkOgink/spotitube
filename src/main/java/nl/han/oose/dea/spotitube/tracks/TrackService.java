@@ -44,7 +44,7 @@ public class TrackService {
     }
 
     public Tracks addTrackToPlaylist(int playlistid, TrackRequest track) {
-        if(tracks.stream().anyMatch(trackDTO -> trackDTO.id == track.id&&trackDTO.offlineAvailable==track.offlineAvailable)){
+        if(tracks.stream().anyMatch(trackDTO -> trackDTO.id == track.id)){
             trackInPlaylistMapper.insert(playlistid, track.id);
             tracksInPlaylist.add(new TracksInPlaylist(playlistid, track.id));
         }

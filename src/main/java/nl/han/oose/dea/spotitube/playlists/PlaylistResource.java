@@ -1,8 +1,8 @@
 package nl.han.oose.dea.spotitube.playlists;
-import nl.han.oose.dea.spotitube.playlists.PlaylistService;
+
 import nl.han.oose.dea.spotitube.playlists.dto.PlaylistRequest;
-import nl.han.oose.dea.spotitube.util.Token;
 import nl.han.oose.dea.spotitube.tracks.TrackService;
+import nl.han.oose.dea.spotitube.util.Token;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

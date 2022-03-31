@@ -4,12 +4,18 @@ import nl.han.oose.dea.spotitube.playlists.dto.Playlist;
 import nl.han.oose.dea.spotitube.playlists.dto.PlaylistResponse;
 import nl.han.oose.dea.spotitube.playlists.dto.Playlists;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 
 public class PlaylistService {
-    PlaylistMapper playlistMapper = new PlaylistMapper();
+    PlaylistMapper playlistMapper;
     static Playlists playlists;
     static String username;
+
+    @Inject
+    public void setPlaylistMapper(PlaylistMapper playlistMapper){
+        this.playlistMapper = playlistMapper;
+    }
 
     public Playlists getPlaylists(String username) {
         PlaylistService.username = username;
@@ -18,7 +24,7 @@ public class PlaylistService {
         return playlists;
     }
 
-    private Playlists mapToPlaylists(ArrayList<Playlist> list) {
+    public Playlists mapToPlaylists(ArrayList<Playlist> list) {
         ArrayList<PlaylistResponse> responseArrayList = new ArrayList<>();
         list.forEach(playlist -> responseArrayList.add
                 (new PlaylistResponse(playlist.id,playlist.name,username.equals(playlist.owner), null)));

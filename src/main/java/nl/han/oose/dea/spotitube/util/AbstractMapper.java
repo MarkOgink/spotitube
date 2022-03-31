@@ -56,11 +56,11 @@ public abstract class AbstractMapper <T>{
     }
 
 
-    public void abstractDelete(){
-        PreparedStatement deleteStatement;
+    public void executeStatement(){
+        PreparedStatement statement;
         try (Connection connection = DriverManager.getConnection(databaseProperties.connectionString())){
-            deleteStatement = connection.prepareStatement(deleteStatement());
-            deleteStatement.executeUpdate();
+            statement = connection.prepareStatement(deleteStatement());
+            statement.executeUpdate();
         } catch (SQLException e){
             logger.log(Level.SEVERE, "Error communicating with database " + databaseProperties.connectionString(), e);
         }
